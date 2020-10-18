@@ -42,7 +42,7 @@ class Ui_MainWindow(QMainWindow):
                 msg = QMessageBox.warning(self, 'warning', "请检查相机于电脑是否连接正确", buttons=QMessageBox.Ok)
                 print(msg)
             else:
-                self.timer_camera.start(1)  # 定时器开始计时30ms，结果是每过30ms从摄像头中取一帧显示
+                self.timer_camera.start(10)  # 定时器开始计时30ms，结果是每过30ms从摄像头中取一帧显示
                 self.timer_camera2.start(1000)
                 self.pushButton_open.setText('关闭相机')
         else:
@@ -54,10 +54,10 @@ class Ui_MainWindow(QMainWindow):
     def __show_camera__(self):
         flag, self.image = self.cap.read()  # 从视频流中读取
         show = cv2.resize(self.image, (640, 192))  # 把读到的帧的大小重新设置为 640x480
-        show = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)  # 视频色彩转换回RGB，这样才是现实的颜色
+        #show = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)  # 视频色彩转换回RGB，这样才是现实的颜色
         cv2.imwrite('./picture/test.jpg', show)
-        show = cv2.resize(self.image, (640, 480))  # 把读到的帧的大小重新设置为 640x480
-        show = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)  # 视频色彩转换回RGB，这样才是现实的颜色
+        #show = cv2.resize(self.image, (640, 480))  # 把读到的帧的大小重新设置为 640x480
+        #show = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)  # 视频色彩转换回RGB，这样才是现实的颜色
         show_image = QImage(show.data, show.shape[1], show.shape[0], QImage.Format_RGB888)  # 把读取到的图像数据变成QImage形式
         self.label_show_camera.setPixmap(QPixmap.fromImage(show_image))  # 往显示视频的Label里 显示QImage
         self.num = self.num+1

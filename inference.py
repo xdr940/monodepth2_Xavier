@@ -6,21 +6,22 @@ from torchvision import transforms
 import threading
 import networks
 from networks.layers import disp_to_depth
-from path import Path
 import cv2
 import time
 import os
 class Inference():
-    def __init__(self):
-        self.encoder_path = "/home/roit/models/monodepth2_official/mono_640x192/encoder.pth"
-        self.depth_decoder_path = "/home/roit/models/monodepth2_official/mono_640x192/depth.pth"
+    def __init__(self,dev='cuda'):
+        #self.encoder_path = "/home/roit/models/monodepth2_official/mono_640x192/encoder.pth"
+        #self.depth_decoder_path = "/home/roit/models/monodepth2_official/mono_640x192/depth.pth"
+        self.encoder_path = "/home/wang/970evop1/models/mono_640x192/encoder.pth"
+        self.depth_decoder_path = "/home/wang/970evop1/models/mono_640x192/depth.pth"
 
 
         ##torch
-        if torch.cuda.is_available():
-            self.device = torch.device("cuda")
-        else:
-            self.device = torch.device("cpu")
+        #if torch.cuda.is_available():
+        self.device = torch.device(dev)
+        #else:
+        #self.device = torch.device("cpu")
 
         print("==> device:", self.device)
 
@@ -52,13 +53,14 @@ class Inference():
         self.feed_width = self.loaded_dict_enc['width']
     ##
         self.cap = cv2.VideoCapture()
-        self.cap.open(0)
+        self.cap.open("/dev/mycamera")
 
         self.writer = Writer()
         self.duration=1
     def predict(self):
         with torch.no_grad():
             while(True):
+                time.sleep(0.01)
                 try:
                     before_op_time = time.time()
 
@@ -84,9 +86,12 @@ class Inference():
                 self.duration = time.time() - before_op_time
     def run(self):
         t1 = threading.Thread(target=self.predict)
+        t3 = threading.Thread(target=self.predict)
+
         t2 = threading.Thread(target=self.get_fps)
         t1.start()
         t2.start()
+        t3.start()
     def get_fps(self):
         while True:
             self.writer.write("fps {:.2f}".format(1 /self.duration))
@@ -95,5 +100,8 @@ class Inference():
 
 
 if __name__ == "__main__":
-    inf = Inference()
-    inf.run()
+   # inf = Inference('cuda')
+   # inf.run()
+    inf2 =Inference('cpu')
+    inf2.run()
+
