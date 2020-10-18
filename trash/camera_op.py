@@ -58,7 +58,7 @@ class Ui_MainWindow(QMainWindow):
         cv2.imwrite('./picture/test.jpg', show)
         show = cv2.resize(self.image, (640, 480))  # 把读到的帧的大小重新设置为 640x480
         show = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)  # 视频色彩转换回RGB，这样才是现实的颜色
-        show_image = QImage(show.data, show.shape[1], show.shape[0], QImage.Format_RGB888)  # 把读取到的视频数据变成QImage形式
+        show_image = QImage(show.data, show.shape[1], show.shape[0], QImage.Format_RGB888)  # 把读取到的图像数据变成QImage形式
         self.label_show_camera.setPixmap(QPixmap.fromImage(show_image))  # 往显示视频的Label里 显示QImage
         self.num = self.num+1
 
