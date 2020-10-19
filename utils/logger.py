@@ -9,16 +9,15 @@ class Writer(object):
     This is the glue between blessings and progressbar.
     """
 
-    def __init__(self, t = Terminal(), location=(0,7)):
+    def __init__(self, ):
         """
         Input: location - tuple of ints (x, y), the position
                         of the bar in the terminal
         """
-        self.location = location
-        self.t = t
+        self.t = Terminal()
 
-    def write(self, string):
-        with self.t.location(*self.location):
+    def write(self, string,location=(0,7)):
+        with self.t.location(*location):
             sys.stdout.write("\033[K")
             print(string)
 
