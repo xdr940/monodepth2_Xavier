@@ -14,7 +14,7 @@ class Inference():
         if runing_on=='pc':
             self.encoder_path = "/home/roit/models/monodepth2_official/mono_640x192/encoder.pth"
             self.depth_decoder_path = "/home/roit/models/monodepth2_official/mono_640x192/depth.pth"
-        elif runing_on =='xavier':
+        elif runing_on =='Xavier':
             self.encoder_path = "/home/wang/970evop1/models/mono_640x192/encoder.pth"
             self.depth_decoder_path = "/home/wang/970evop1/models/mono_640x192/depth.pth"
 
@@ -57,7 +57,7 @@ class Inference():
 
 
         self.writer = Writer()
-        self.duration={'cap':1,'transform':2,'prediction':3,'show':4,'final':5}
+        self.duration={'cap':1,'transform':2,'prediction':3,'to_cpu':1,'show':4,'final':5}
 
 
     def predict(self):
@@ -67,6 +67,7 @@ class Inference():
 
 
                     #capture
+
                     t1 = time.time()
                     ret, frame = self.cap.read()
                     t2 = time.time()
@@ -81,22 +82,33 @@ class Inference():
                     self.duration['transform']= t3-t2
 
                     # # PREDICTION
+                    torch.cuda.synchronize(self.device)
+
                     features = self.encoder(input_image)
                     disp = self.depth_decoder(features[0], features[1], features[2], features[3], features[4])
-                    t4 =  time.time()
-                    self.duration['prediction'] = t4-t3
+
 
 
                     #show
-                    disp_resized = torch.nn.functional.interpolate(
-                        disp, (480, 640), mode="bilinear", align_corners=False).cpu().numpy()[0,0]
-                    cv2.imshow('depth',disp_resized)
+                    disp = torch.nn.functional.interpolate(
+                        disp, (480, 640), mode="bilinear", align_corners=False)
+                    torch.cuda.synchronize(self.device)
+                    t4 = time.time()
+
+                    self.duration['prediction'] = t4 - t3
+                    disp = disp[0, 0].to('cpu')
+
                     t5 =  time.time()
 
-                    self.duration['show'] = t5-t4
-                    self.duration['final']=t5-t1
+                    self.duration['to_cpu'] = t5-t4
 
-                    if cv2.waitKey(12) & 0xff == ord('q'):
+                    disp= disp.detach().numpy()
+                    cv2.imshow('depth',disp)
+                    t6 = time.time()
+                    self.duration['show'] = t6-t5
+                    self.duration['final']=t6-t1
+
+                    if cv2.waitKey(1) & 0xff == ord('q'):
                         break
                 except KeyboardInterrupt:
 
@@ -105,19 +117,21 @@ class Inference():
                     pass
     def run(self):
         t1 = threading.Thread(target=self.predict)
-        t3 = threading.Thread(target=self.predict)
+        #t3 = threading.Thread(target=self.predict)
 
         t2 = threading.Thread(target=self.get_fps)
         t1.start()
         t2.start()
-        t3.start()
+        #t3.start()
     def get_fps(self):
         while True:
-            self.writer.write("cap fps {:.2f}".format(1 /(self.duration['cap'])),location=(0,5))
-            self.writer.write("transform fps {:.2f}".format(1 /(self.duration['transform'])),location=(0,6))
-            self.writer.write("prediction fps {:.2f}".format(1 /(self.duration['prediction'])),location=(0,7))
-            self.writer.write("show fps {:.2f}".format(1 /(self.duration['show'])),location=(0,8))
-            self.writer.write("show fps {:.2f}".format(1 /(self.duration['final'])),location=(0,9))
+            cnt=5
+            for k,v in self.duration.items():
+
+                self.writer.write("{}: {:.2f}".format(k, 1 /v),location=(0,cnt))
+                cnt+=1
+            cnt=5
+
 
 
 
@@ -126,7 +140,7 @@ class Inference():
 
 
 if __name__ == "__main__":
-    inf = Inference('cuda')
+    inf = Inference('cuda',runing_on='Xavier')
     inf.run()
   #  inf2 =Inference('cpu')
   #  inf2.run()
