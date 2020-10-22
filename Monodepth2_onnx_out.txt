@@ -1,0 +1,378 @@
+graph(%0 : Float(8, 3, 640, 192),
+      %encoder.conv1.weight : Float(64, 3, 7, 7),
+      %encoder.bn1.weight : Float(64),
+      %encoder.bn1.bias : Float(64),
+      %encoder.bn1.running_mean : Float(64),
+      %encoder.bn1.running_var : Float(64),
+
+      %encoder.layer1.0.conv1.weight : Float(64, 64, 3, 3),
+      %encoder.layer1.0.bn1.weight : Float(64),
+      %encoder.layer1.0.bn1.bias : Float(64),
+      %encoder.layer1.0.bn1.running_mean : Float(64),
+      %encoder.layer1.0.bn1.running_var : Float(64),
+      %encoder.layer1.0.conv2.weight : Float(64, 64, 3, 3),
+      %encoder.layer1.0.bn2.weight : Float(64),
+      %encoder.layer1.0.bn2.bias : Float(64),
+      %encoder.layer1.0.bn2.running_mean : Float(64),
+      %encoder.layer1.0.bn2.running_var : Float(64),
+
+      %encoder.layer1.1.conv1.weight : Float(64, 64, 3, 3),
+      %encoder.layer1.1.bn1.weight : Float(64),
+      %encoder.layer1.1.bn1.bias : Float(64),
+      %encoder.layer1.1.bn1.running_mean : Float(64),
+      %encoder.layer1.1.bn1.running_var : Float(64),
+      %encoder.layer1.1.conv2.weight : Float(64, 64, 3, 3),
+      %encoder.layer1.1.bn2.weight : Float(64),
+      %encoder.layer1.1.bn2.bias : Float(64),
+      %encoder.layer1.1.bn2.running_mean : Float(64),
+      %encoder.layer1.1.bn2.running_var : Float(64),
+
+      %encoder.layer2.0.conv1.weight : Float(128, 64, 3, 3),
+      %encoder.layer2.0.bn1.weight : Float(128),
+      %encoder.layer2.0.bn1.bias : Float(128),
+      %encoder.layer2.0.bn1.running_mean : Float(128),
+      %encoder.layer2.0.bn1.running_var : Float(128),
+      %encoder.layer2.0.conv2.weight : Float(128, 128, 3, 3),
+      %encoder.layer2.0.bn2.weight : Float(128),
+      %encoder.layer2.0.bn2.bias : Float(128),
+      %encoder.layer2.0.bn2.running_mean : Float(128),
+      %encoder.layer2.0.bn2.running_var : Float(128),
+      %encoder.layer2.0.downsample.0.weight : Float(128, 64, 1, 1),
+      %encoder.layer2.0.downsample.1.weight : Float(128),
+      %encoder.layer2.0.downsample.1.bias : Float(128),
+      %encoder.layer2.0.downsample.1.running_mean : Float(128),
+      %encoder.layer2.0.downsample.1.running_var : Float(128),
+      %encoder.layer2.1.conv1.weight : Float(128, 128, 3, 3),
+      %encoder.layer2.1.bn1.weight : Float(128),
+      %encoder.layer2.1.bn1.bias : Float(128),
+      %encoder.layer2.1.bn1.running_mean : Float(128),
+      %encoder.layer2.1.bn1.running_var : Float(128),
+      %encoder.layer2.1.conv2.weight : Float(128, 128, 3, 3),
+      %encoder.layer2.1.bn2.weight : Float(128),
+      %encoder.layer2.1.bn2.bias : Float(128),
+      %encoder.layer2.1.bn2.running_mean : Float(128),
+      %encoder.layer2.1.bn2.running_var : Float(128),
+      %encoder.layer3.0.conv1.weight : Float(256, 128, 3, 3),
+      %encoder.layer3.0.bn1.weight : Float(256),
+      %encoder.layer3.0.bn1.bias : Float(256),
+      %encoder.layer3.0.bn1.running_mean : Float(256),
+      %encoder.layer3.0.bn1.running_var : Float(256),
+      %encoder.layer3.0.conv2.weight : Float(256, 256, 3, 3),
+      %encoder.layer3.0.bn2.weight : Float(256),
+      %encoder.layer3.0.bn2.bias : Float(256),
+      %encoder.layer3.0.bn2.running_mean : Float(256),
+      %encoder.layer3.0.bn2.running_var : Float(256),
+      %encoder.layer3.0.downsample.0.weight : Float(256, 128, 1, 1),
+      %encoder.layer3.0.downsample.1.weight : Float(256),
+      %encoder.layer3.0.downsample.1.bias : Float(256),
+      %encoder.layer3.0.downsample.1.running_mean : Float(256),
+      %encoder.layer3.0.downsample.1.running_var : Float(256),
+      %encoder.layer3.1.conv1.weight : Float(256, 256, 3, 3),
+      %encoder.layer3.1.bn1.weight : Float(256),
+      %encoder.layer3.1.bn1.bias : Float(256),
+      %encoder.layer3.1.bn1.running_mean : Float(256),
+      %encoder.layer3.1.bn1.running_var : Float(256),
+      %encoder.layer3.1.conv2.weight : Float(256, 256, 3, 3),
+      %encoder.layer3.1.bn2.weight : Float(256),
+      %encoder.layer3.1.bn2.bias : Float(256),
+      %encoder.layer3.1.bn2.running_mean : Float(256),
+      %encoder.layer3.1.bn2.running_var : Float(256),
+      %encoder.layer4.0.conv1.weight : Float(512, 256, 3, 3),
+      %encoder.layer4.0.bn1.weight : Float(512),
+      %encoder.layer4.0.bn1.bias : Float(512),
+      %encoder.layer4.0.bn1.running_mean : Float(512),
+      %encoder.layer4.0.bn1.running_var : Float(512),
+      %encoder.layer4.0.conv2.weight : Float(512, 512, 3, 3),
+      %encoder.layer4.0.bn2.weight : Float(512),
+      %encoder.layer4.0.bn2.bias : Float(512),
+      %encoder.layer4.0.bn2.running_mean : Float(512),
+      %encoder.layer4.0.bn2.running_var : Float(512),
+      %encoder.layer4.0.downsample.0.weight : Float(512, 256, 1, 1),
+      %encoder.layer4.0.downsample.1.weight : Float(512),
+      %encoder.layer4.0.downsample.1.bias : Float(512),
+      %encoder.layer4.0.downsample.1.running_mean : Float(512),
+      %encoder.layer4.0.downsample.1.running_var : Float(512),
+      %encoder.layer4.1.conv1.weight : Float(512, 512, 3, 3),
+      %encoder.layer4.1.bn1.weight : Float(512),
+      %encoder.layer4.1.bn1.bias : Float(512),
+      %encoder.layer4.1.bn1.running_mean : Float(512),
+      %encoder.layer4.1.bn1.running_var : Float(512),
+      %encoder.layer4.1.conv2.weight : Float(512, 512, 3, 3),
+      %encoder.layer4.1.bn2.weight : Float(512),
+      %encoder.layer4.1.bn2.bias : Float(512),
+      %encoder.layer4.1.bn2.running_mean : Float(512),
+      %encoder.layer4.1.bn2.running_var : Float(512)):
+  %123 : Float() = onnx::Constant[value={0.45}]()
+  %124 : Float(8, 3, 640, 192) = onnx::Sub(%0, %123)
+  %125 : Float() = onnx::Constant[value={0.225}]()
+  %126 : Float(8, 3, 640, 192) = onnx::Div(%124, %125)
+  %127 : Float(8, 64, 320, 96) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[7, 7], pads=[3, 3, 3, 3], strides=[2, 2]](%126, %encoder.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %128 : Float(8, 64, 320, 96) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%127, %encoder.bn1.weight, %encoder.bn1.bias, %encoder.bn1.running_mean, %encoder.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %f0 : Float(8, 64, 320, 96) = onnx::Relu(%128) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %130 : Float(8, 64, 160, 48) = onnx::MaxPool[kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[2, 2]](%f0) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:539:0
+  %131 : Float(8, 64, 160, 48) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%130, %encoder.layer1.0.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %132 : Float(8, 64, 160, 48) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%131, %encoder.layer1.0.bn1.weight, %encoder.layer1.0.bn1.bias, %encoder.layer1.0.bn1.running_mean, %encoder.layer1.0.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %133 : Float(8, 64, 160, 48) = onnx::Relu(%132) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %134 : Float(8, 64, 160, 48) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%133, %encoder.layer1.0.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %135 : Float(8, 64, 160, 48) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%134, %encoder.layer1.0.bn2.weight, %encoder.layer1.0.bn2.bias, %encoder.layer1.0.bn2.running_mean, %encoder.layer1.0.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %136 : Float(8, 64, 160, 48) = onnx::Add(%135, %130)
+  %137 : Float(8, 64, 160, 48) = onnx::Relu(%136) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %138 : Float(8, 64, 160, 48) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%137, %encoder.layer1.1.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %139 : Float(8, 64, 160, 48) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%138, %encoder.layer1.1.bn1.weight, %encoder.layer1.1.bn1.bias, %encoder.layer1.1.bn1.running_mean, %encoder.layer1.1.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %140 : Float(8, 64, 160, 48) = onnx::Relu(%139) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %141 : Float(8, 64, 160, 48) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%140, %encoder.layer1.1.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %142 : Float(8, 64, 160, 48) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%141, %encoder.layer1.1.bn2.weight, %encoder.layer1.1.bn2.bias, %encoder.layer1.1.bn2.running_mean, %encoder.layer1.1.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %143 : Float(8, 64, 160, 48) = onnx::Add(%142, %137)
+  %f1 : Float(8, 64, 160, 48) = onnx::Relu(%143) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %145 : Float(8, 128, 80, 24) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[2, 2]](%f1, %encoder.layer2.0.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %146 : Float(8, 128, 80, 24) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%145, %encoder.layer2.0.bn1.weight, %encoder.layer2.0.bn1.bias, %encoder.layer2.0.bn1.running_mean, %encoder.layer2.0.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %147 : Float(8, 128, 80, 24) = onnx::Relu(%146) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %148 : Float(8, 128, 80, 24) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%147, %encoder.layer2.0.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %149 : Float(8, 128, 80, 24) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%148, %encoder.layer2.0.bn2.weight, %encoder.layer2.0.bn2.bias, %encoder.layer2.0.bn2.running_mean, %encoder.layer2.0.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %150 : Float(8, 128, 80, 24) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[1, 1], pads=[0, 0, 0, 0], strides=[2, 2]](%f1, %encoder.layer2.0.downsample.0.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %151 : Float(8, 128, 80, 24) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%150, %encoder.layer2.0.downsample.1.weight, %encoder.layer2.0.downsample.1.bias, %encoder.layer2.0.downsample.1.running_mean, %encoder.layer2.0.downsample.1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %152 : Float(8, 128, 80, 24) = onnx::Add(%149, %151)
+  %153 : Float(8, 128, 80, 24) = onnx::Relu(%152) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %154 : Float(8, 128, 80, 24) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%153, %encoder.layer2.1.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %155 : Float(8, 128, 80, 24) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%154, %encoder.layer2.1.bn1.weight, %encoder.layer2.1.bn1.bias, %encoder.layer2.1.bn1.running_mean, %encoder.layer2.1.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %156 : Float(8, 128, 80, 24) = onnx::Relu(%155) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %157 : Float(8, 128, 80, 24) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%156, %encoder.layer2.1.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %158 : Float(8, 128, 80, 24) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%157, %encoder.layer2.1.bn2.weight, %encoder.layer2.1.bn2.bias, %encoder.layer2.1.bn2.running_mean, %encoder.layer2.1.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %159 : Float(8, 128, 80, 24) = onnx::Add(%158, %153)
+  %f2 : Float(8, 128, 80, 24) = onnx::Relu(%159) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %161 : Float(8, 256, 40, 12) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[2, 2]](%f2, %encoder.layer3.0.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %162 : Float(8, 256, 40, 12) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%161, %encoder.layer3.0.bn1.weight, %encoder.layer3.0.bn1.bias, %encoder.layer3.0.bn1.running_mean, %encoder.layer3.0.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %163 : Float(8, 256, 40, 12) = onnx::Relu(%162) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %164 : Float(8, 256, 40, 12) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%163, %encoder.layer3.0.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %165 : Float(8, 256, 40, 12) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%164, %encoder.layer3.0.bn2.weight, %encoder.layer3.0.bn2.bias, %encoder.layer3.0.bn2.running_mean, %encoder.layer3.0.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %166 : Float(8, 256, 40, 12) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[1, 1], pads=[0, 0, 0, 0], strides=[2, 2]](%f2, %encoder.layer3.0.downsample.0.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %167 : Float(8, 256, 40, 12) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%166, %encoder.layer3.0.downsample.1.weight, %encoder.layer3.0.downsample.1.bias, %encoder.layer3.0.downsample.1.running_mean, %encoder.layer3.0.downsample.1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %168 : Float(8, 256, 40, 12) = onnx::Add(%165, %167)
+  %169 : Float(8, 256, 40, 12) = onnx::Relu(%168) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %170 : Float(8, 256, 40, 12) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%169, %encoder.layer3.1.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %171 : Float(8, 256, 40, 12) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%170, %encoder.layer3.1.bn1.weight, %encoder.layer3.1.bn1.bias, %encoder.layer3.1.bn1.running_mean, %encoder.layer3.1.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %172 : Float(8, 256, 40, 12) = onnx::Relu(%171) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %173 : Float(8, 256, 40, 12) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%172, %encoder.layer3.1.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %174 : Float(8, 256, 40, 12) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%173, %encoder.layer3.1.bn2.weight, %encoder.layer3.1.bn2.bias, %encoder.layer3.1.bn2.running_mean, %encoder.layer3.1.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %175 : Float(8, 256, 40, 12) = onnx::Add(%174, %169)
+  %f3 : Float(8, 256, 40, 12) = onnx::Relu(%175) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %177 : Float(8, 512, 20, 6) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[2, 2]](%f3, %encoder.layer4.0.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %178 : Float(8, 512, 20, 6) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%177, %encoder.layer4.0.bn1.weight, %encoder.layer4.0.bn1.bias, %encoder.layer4.0.bn1.running_mean, %encoder.layer4.0.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %179 : Float(8, 512, 20, 6) = onnx::Relu(%178) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %180 : Float(8, 512, 20, 6) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%179, %encoder.layer4.0.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %181 : Float(8, 512, 20, 6) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%180, %encoder.layer4.0.bn2.weight, %encoder.layer4.0.bn2.bias, %encoder.layer4.0.bn2.running_mean, %encoder.layer4.0.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %182 : Float(8, 512, 20, 6) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[1, 1], pads=[0, 0, 0, 0], strides=[2, 2]](%f3, %encoder.layer4.0.downsample.0.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %183 : Float(8, 512, 20, 6) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%182, %encoder.layer4.0.downsample.1.weight, %encoder.layer4.0.downsample.1.bias, %encoder.layer4.0.downsample.1.running_mean, %encoder.layer4.0.downsample.1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %184 : Float(8, 512, 20, 6) = onnx::Add(%181, %183)
+  %185 : Float(8, 512, 20, 6) = onnx::Relu(%184) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %186 : Float(8, 512, 20, 6) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%185, %encoder.layer4.1.conv1.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %187 : Float(8, 512, 20, 6) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%186, %encoder.layer4.1.bn1.weight, %encoder.layer4.1.bn1.bias, %encoder.layer4.1.bn1.running_mean, %encoder.layer4.1.bn1.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %188 : Float(8, 512, 20, 6) = onnx::Relu(%187) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  %189 : Float(8, 512, 20, 6) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[1, 1, 1, 1], strides=[1, 1]](%188, %encoder.layer4.1.conv2.weight) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %190 : Float(8, 512, 20, 6) = onnx::BatchNormalization[epsilon=1.0000000000000001e-05, momentum=0.90000000000000002](%189, %encoder.layer4.1.bn2.weight, %encoder.layer4.1.bn2.bias, %encoder.layer4.1.bn2.running_mean, %encoder.layer4.1.bn2.running_var) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1923:0
+  %191 : Float(8, 512, 20, 6) = onnx::Add(%190, %185)
+  %f4 : Float(8, 512, 20, 6) = onnx::Relu(%191) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1061:0
+  return (%f0, %f1, %f2, %f3, %f4)
+
+graph(%f0 : Float(8, 64, 320, 96),
+      %f1 : Float(8, 64, 160, 48),
+      %f2 : Float(8, 128, 80, 24),
+      %f3 : Float(8, 256, 40, 12),
+      %f4 : Float(8, 512, 20, 6),
+      %decoder.0.conv.conv.weight : Float(256, 512, 3, 3),
+      %decoder.0.conv.conv.bias : Float(256),
+      %decoder.1.conv.conv.weight : Float(256, 512, 3, 3),
+      %decoder.1.conv.conv.bias : Float(256),
+      %decoder.2.conv.conv.weight : Float(128, 256, 3, 3),
+      %decoder.2.conv.conv.bias : Float(128),
+      %decoder.3.conv.conv.weight : Float(128, 256, 3, 3),
+      %decoder.3.conv.conv.bias : Float(128),
+      %decoder.4.conv.conv.weight : Float(64, 128, 3, 3),
+      %decoder.4.conv.conv.bias : Float(64),
+      %decoder.5.conv.conv.weight : Float(64, 128, 3, 3),
+      %decoder.5.conv.conv.bias : Float(64),
+      %decoder.6.conv.conv.weight : Float(32, 64, 3, 3),
+      %decoder.6.conv.conv.bias : Float(32),
+      %decoder.7.conv.conv.weight : Float(32, 96, 3, 3),
+      %decoder.7.conv.conv.bias : Float(32),
+      %decoder.8.conv.conv.weight : Float(16, 32, 3, 3),
+      %decoder.8.conv.conv.bias : Float(16),
+      %decoder.9.conv.conv.weight : Float(16, 16, 3, 3),
+      %decoder.9.conv.conv.bias : Float(16),
+      %decoder.10.conv.weight : Float(1, 16, 3, 3),
+      %decoder.10.conv.bias : Float(1)):
+  %27 : Float(8, 512, 22, 8) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%f4) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %28 : Float(8, 256, 20, 6) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%27, %decoder.0.conv.conv.weight, %decoder.0.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %29 : Float(8, 256, 20, 6) = onnx::Elu[alpha=1.](%28) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %30 : Tensor = onnx::Shape(%29)
+  %31 : Tensor = onnx::Constant[value={2}]()
+  %32 : Long() = onnx::Gather[axis=0](%30, %31) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %33 : Float() = onnx::Cast[to=1](%32) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %34 : Float() = onnx::Constant[value={2}]()
+  %35 : Float() = onnx::Mul(%33, %34)
+  %36 : Float() = onnx::Cast[to=1](%35) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %37 : Float() = onnx::Floor(%36) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %38 : Tensor = onnx::Shape(%29)
+  %39 : Tensor = onnx::Constant[value={3}]()
+  %40 : Long() = onnx::Gather[axis=0](%38, %39) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %41 : Float() = onnx::Cast[to=1](%40) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %42 : Float() = onnx::Constant[value={2}]()
+  %43 : Float() = onnx::Mul(%41, %42)
+  %44 : Float() = onnx::Cast[to=1](%43) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %45 : Float() = onnx::Floor(%44) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %46 : Tensor = onnx::Unsqueeze[axes=[0]](%37)
+  %47 : Tensor = onnx::Unsqueeze[axes=[0]](%45)
+  %48 : Tensor = onnx::Concat[axis=0](%46, %47)
+  %49 : Tensor = onnx::Constant[value= 1  1 [ CPUFloatType{2} ]]()
+  %50 : Tensor = onnx::Cast[to=1](%48)
+  %51 : Tensor = onnx::Shape(%29)
+  %52 : Tensor = onnx::Slice[axes=[0], ends=[9223372036854775807], starts=[2]](%51)
+  %53 : Tensor = onnx::Cast[to=1](%52)
+  %54 : Tensor = onnx::Div(%50, %53)
+  %55 : Tensor = onnx::Concat[axis=0](%49, %54)
+  %56 : Float(8, 256, 40, 12) = onnx::Upsample[mode="nearest"](%29, %55) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2991:0
+  %57 : Float(8, 512, 40, 12) = onnx::Concat[axis=1](%56, %f3) # /home/roit/aws/aprojects/monodepth2-Xavier/networks/depth_decoder2.py:87:0
+  %58 : Float(8, 512, 42, 14) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%57) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %59 : Float(8, 256, 40, 12) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%58, %decoder.1.conv.conv.weight, %decoder.1.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %60 : Float(8, 256, 40, 12) = onnx::Elu[alpha=1.](%59) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %61 : Float(8, 256, 42, 14) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%60) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %62 : Float(8, 128, 40, 12) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%61, %decoder.2.conv.conv.weight, %decoder.2.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %63 : Float(8, 128, 40, 12) = onnx::Elu[alpha=1.](%62) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %64 : Tensor = onnx::Shape(%63)
+  %65 : Tensor = onnx::Constant[value={2}]()
+  %66 : Long() = onnx::Gather[axis=0](%64, %65) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %67 : Float() = onnx::Cast[to=1](%66) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %68 : Float() = onnx::Constant[value={2}]()
+  %69 : Float() = onnx::Mul(%67, %68)
+  %70 : Float() = onnx::Cast[to=1](%69) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %71 : Float() = onnx::Floor(%70) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %72 : Tensor = onnx::Shape(%63)
+  %73 : Tensor = onnx::Constant[value={3}]()
+  %74 : Long() = onnx::Gather[axis=0](%72, %73) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %75 : Float() = onnx::Cast[to=1](%74) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %76 : Float() = onnx::Constant[value={2}]()
+  %77 : Float() = onnx::Mul(%75, %76)
+  %78 : Float() = onnx::Cast[to=1](%77) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %79 : Float() = onnx::Floor(%78) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %80 : Tensor = onnx::Unsqueeze[axes=[0]](%71)
+  %81 : Tensor = onnx::Unsqueeze[axes=[0]](%79)
+  %82 : Tensor = onnx::Concat[axis=0](%80, %81)
+  %83 : Tensor = onnx::Constant[value= 1  1 [ CPUFloatType{2} ]]()
+  %84 : Tensor = onnx::Cast[to=1](%82)
+  %85 : Tensor = onnx::Shape(%63)
+  %86 : Tensor = onnx::Slice[axes=[0], ends=[9223372036854775807], starts=[2]](%85)
+  %87 : Tensor = onnx::Cast[to=1](%86)
+  %88 : Tensor = onnx::Div(%84, %87)
+  %89 : Tensor = onnx::Concat[axis=0](%83, %88)
+  %90 : Float(8, 128, 80, 24) = onnx::Upsample[mode="nearest"](%63, %89) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2991:0
+  %91 : Float(8, 256, 80, 24) = onnx::Concat[axis=1](%90, %f2) # /home/roit/aws/aprojects/monodepth2-Xavier/networks/depth_decoder2.py:95:0
+  %92 : Float(8, 256, 82, 26) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%91) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %93 : Float(8, 128, 80, 24) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%92, %decoder.3.conv.conv.weight, %decoder.3.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %94 : Float(8, 128, 80, 24) = onnx::Elu[alpha=1.](%93) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %95 : Float(8, 128, 82, 26) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%94) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %96 : Float(8, 64, 80, 24) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%95, %decoder.4.conv.conv.weight, %decoder.4.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %97 : Float(8, 64, 80, 24) = onnx::Elu[alpha=1.](%96) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %98 : Tensor = onnx::Shape(%97)
+  %99 : Tensor = onnx::Constant[value={2}]()
+  %100 : Long() = onnx::Gather[axis=0](%98, %99) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %101 : Float() = onnx::Cast[to=1](%100) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %102 : Float() = onnx::Constant[value={2}]()
+  %103 : Float() = onnx::Mul(%101, %102)
+  %104 : Float() = onnx::Cast[to=1](%103) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %105 : Float() = onnx::Floor(%104) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %106 : Tensor = onnx::Shape(%97)
+  %107 : Tensor = onnx::Constant[value={3}]()
+  %108 : Long() = onnx::Gather[axis=0](%106, %107) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %109 : Float() = onnx::Cast[to=1](%108) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %110 : Float() = onnx::Constant[value={2}]()
+  %111 : Float() = onnx::Mul(%109, %110)
+  %112 : Float() = onnx::Cast[to=1](%111) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %113 : Float() = onnx::Floor(%112) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %114 : Tensor = onnx::Unsqueeze[axes=[0]](%105)
+  %115 : Tensor = onnx::Unsqueeze[axes=[0]](%113)
+  %116 : Tensor = onnx::Concat[axis=0](%114, %115)
+  %117 : Tensor = onnx::Constant[value= 1  1 [ CPUFloatType{2} ]]()
+  %118 : Tensor = onnx::Cast[to=1](%116)
+  %119 : Tensor = onnx::Shape(%97)
+  %120 : Tensor = onnx::Slice[axes=[0], ends=[9223372036854775807], starts=[2]](%119)
+  %121 : Tensor = onnx::Cast[to=1](%120)
+  %122 : Tensor = onnx::Div(%118, %121)
+  %123 : Tensor = onnx::Concat[axis=0](%117, %122)
+  %124 : Float(8, 64, 160, 48) = onnx::Upsample[mode="nearest"](%97, %123) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2991:0
+  %125 : Float(8, 128, 160, 48) = onnx::Concat[axis=1](%124, %f1) # /home/roit/aws/aprojects/monodepth2-Xavier/networks/depth_decoder2.py:103:0
+  %126 : Float(8, 128, 162, 50) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%125) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %127 : Float(8, 64, 160, 48) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%126, %decoder.5.conv.conv.weight, %decoder.5.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %128 : Float(8, 64, 160, 48) = onnx::Elu[alpha=1.](%127) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %129 : Float(8, 64, 162, 50) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%128) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %130 : Float(8, 32, 160, 48) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%129, %decoder.6.conv.conv.weight, %decoder.6.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %131 : Float(8, 32, 160, 48) = onnx::Elu[alpha=1.](%130) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %132 : Tensor = onnx::Shape(%131)
+  %133 : Tensor = onnx::Constant[value={2}]()
+  %134 : Long() = onnx::Gather[axis=0](%132, %133) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %135 : Float() = onnx::Cast[to=1](%134) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %136 : Float() = onnx::Constant[value={2}]()
+  %137 : Float() = onnx::Mul(%135, %136)
+  %138 : Float() = onnx::Cast[to=1](%137) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %139 : Float() = onnx::Floor(%138) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %140 : Tensor = onnx::Shape(%131)
+  %141 : Tensor = onnx::Constant[value={3}]()
+  %142 : Long() = onnx::Gather[axis=0](%140, %141) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %143 : Float() = onnx::Cast[to=1](%142) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %144 : Float() = onnx::Constant[value={2}]()
+  %145 : Float() = onnx::Mul(%143, %144)
+  %146 : Float() = onnx::Cast[to=1](%145) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %147 : Float() = onnx::Floor(%146) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %148 : Tensor = onnx::Unsqueeze[axes=[0]](%139)
+  %149 : Tensor = onnx::Unsqueeze[axes=[0]](%147)
+  %150 : Tensor = onnx::Concat[axis=0](%148, %149)
+  %151 : Tensor = onnx::Constant[value= 1  1 [ CPUFloatType{2} ]]()
+  %152 : Tensor = onnx::Cast[to=1](%150)
+  %153 : Tensor = onnx::Shape(%131)
+  %154 : Tensor = onnx::Slice[axes=[0], ends=[9223372036854775807], starts=[2]](%153)
+  %155 : Tensor = onnx::Cast[to=1](%154)
+  %156 : Tensor = onnx::Div(%152, %155)
+  %157 : Tensor = onnx::Concat[axis=0](%151, %156)
+  %158 : Float(8, 32, 320, 96) = onnx::Upsample[mode="nearest"](%131, %157) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2991:0
+  %159 : Float(8, 96, 320, 96) = onnx::Concat[axis=1](%158, %f0) # /home/roit/aws/aprojects/monodepth2-Xavier/networks/depth_decoder2.py:111:0
+  %160 : Float(8, 96, 322, 98) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%159) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %161 : Float(8, 32, 320, 96) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%160, %decoder.7.conv.conv.weight, %decoder.7.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %162 : Float(8, 32, 320, 96) = onnx::Elu[alpha=1.](%161) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %163 : Float(8, 32, 322, 98) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%162) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %164 : Float(8, 16, 320, 96) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%163, %decoder.8.conv.conv.weight, %decoder.8.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %165 : Float(8, 16, 320, 96) = onnx::Elu[alpha=1.](%164) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %166 : Tensor = onnx::Shape(%165)
+  %167 : Tensor = onnx::Constant[value={2}]()
+  %168 : Long() = onnx::Gather[axis=0](%166, %167) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %169 : Float() = onnx::Cast[to=1](%168) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %170 : Float() = onnx::Constant[value={2}]()
+  %171 : Float() = onnx::Mul(%169, %170)
+  %172 : Float() = onnx::Cast[to=1](%171) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %173 : Float() = onnx::Floor(%172) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %174 : Tensor = onnx::Shape(%165)
+  %175 : Tensor = onnx::Constant[value={3}]()
+  %176 : Long() = onnx::Gather[axis=0](%174, %175) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %177 : Float() = onnx::Cast[to=1](%176) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %178 : Float() = onnx::Constant[value={2}]()
+  %179 : Float() = onnx::Mul(%177, %178)
+  %180 : Float() = onnx::Cast[to=1](%179) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %181 : Float() = onnx::Floor(%180) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2864:0
+  %182 : Tensor = onnx::Unsqueeze[axes=[0]](%173)
+  %183 : Tensor = onnx::Unsqueeze[axes=[0]](%181)
+  %184 : Tensor = onnx::Concat[axis=0](%182, %183)
+  %185 : Tensor = onnx::Constant[value= 1  1 [ CPUFloatType{2} ]]()
+  %186 : Tensor = onnx::Cast[to=1](%184)
+  %187 : Tensor = onnx::Shape(%165)
+  %188 : Tensor = onnx::Slice[axes=[0], ends=[9223372036854775807], starts=[2]](%187)
+  %189 : Tensor = onnx::Cast[to=1](%188)
+  %190 : Tensor = onnx::Div(%186, %189)
+  %191 : Tensor = onnx::Concat[axis=0](%185, %190)
+  %192 : Float(8, 16, 640, 192) = onnx::Upsample[mode="nearest"](%165, %191) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:2991:0
+  %193 : Float(8, 16, 642, 194) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%192) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %194 : Float(8, 16, 640, 192) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%193, %decoder.9.conv.conv.weight, %decoder.9.conv.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %195 : Float(8, 16, 640, 192) = onnx::Elu[alpha=1.](%194) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:1154:0
+  %196 : Float(8, 16, 642, 194) = onnx::Pad[mode="reflect", pads=[0, 0, 1, 1, 0, 0, 1, 1]](%195) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/functional.py:3408:0
+  %197 : Float(8, 1, 640, 192) = onnx::Conv[dilations=[1, 1], group=1, kernel_shape=[3, 3], pads=[0, 0, 0, 0], strides=[1, 1]](%196, %decoder.10.conv.weight, %decoder.10.conv.bias) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/conv.py:350:0
+  %o0 : Float(8, 1, 640, 192) = onnx::Sigmoid(%197) # /home/roit/wkpgs/Anaconda3/envs/pt/lib/python3.6/site-packages/torch/nn/modules/activation.py:271:0
+  return (%o0)
+
+ok
