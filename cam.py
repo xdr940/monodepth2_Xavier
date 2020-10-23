@@ -5,7 +5,7 @@ import threading
 import time
 cap = cv2.VideoCapture()
 import time
-cap.open("/dev/mycamera" )
+cap.open("/dev/video0" )
 writer = Writer()
 duration=1
 
@@ -14,36 +14,35 @@ duration=1
 def cam():
     global duration
     while (1):
-        before_op_time = time.time()
+        try:
+            t1 = time.time()
 
-        ret, frame = cap.read()
+            ret, frame = cap.read()
 
+            t2 = time.time()
 
-        cv2.imshow('frae',frame)
+            cv2.imshow('frame',frame)
 
-        if cv2.waitKey(1) & 0xff == ord('q'):
-            break
-        duration = time.time() - before_op_time
-    #print("fps {%2f}".format(1/duration))
+            if cv2.waitKey(1) & 0xff == ord('q'):
+               break
+            duration = t2-t1
+        except KeyboardInterrupt:
+            return
+        except:
+            pass
+
 
 
 def temout():
     global duration
     while True:
-        writer.write("fps {:.2f}".format(1 / duration))
+        writer.write("fps: {:.2f}".format( 1/duration))
         time.sleep(1)
 if __name__ == '__main__':
     t1 = threading.Thread(target=cam)
-    t2 = threading.Thread(target=cam)
-    t3 = threading.Thread(target=cam)
-    t4 = threading.Thread(target=cam)
-    t5 = threading.Thread(target=cam)
 
     t0 = threading.Thread(target=temout)
     t1.start()
-    t2.start()
-    t3.start()
-    t4.start()
-    t5.start()
+    t0.start()
 
     cam()

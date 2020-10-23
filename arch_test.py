@@ -74,9 +74,6 @@ class TestNet():
             time.sleep(1.1)
             self.writer.write("encoder: {:.2f} ms\ndecoder: {:.2f}ms\ntotal: {:.2f}ms\n".format(self.duration_en*1000,self.duration_de*1000,self.duration*1000), location=(0, 5))
 
-
-
-
     def onnx_out(self):
         example_inputs = torch.rand(8, 3, 224, 224)  # bs is not matter for latency
 
@@ -275,11 +272,11 @@ if  __name__ == '__main__':
     onnx_dir.mkdir_p()
     #network = FastResNet(running_on='pc', dev='cuda',name='nnconv5dw',height=224,width=224)
 
-    network = FastMobileNet(running_on='pc', dev='cuda',name='nnconv5dw',height=224,width=224)
-    #network = Monodepth2(running_on='pc',dev='cuda',name='arch1',height=224,width=224)
+    #network = FastMobileNet(running_on='pc', dev='cuda',name='nnconv5dw',height=224,width=224)
+    network = Monodepth2(running_on='pc',dev='cuda',name='arch1',height=224,width=384)
+    network.Test()
 
-
-    network.torch_stat()
+    #network.torch_stat()
     #network = Monodepth2()
     #network.onnx_out()
     #network.torch_stat()

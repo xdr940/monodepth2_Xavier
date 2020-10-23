@@ -55,8 +55,14 @@ class Inference():
 
         self.writer = Writer()
         self.duration={'cap':1,'transform':2,'encoder':3,'decoder':4,'final':5}
-
-
+        _,self.frame = self.cap.read()
+    def capture(self):
+        while True:
+            t1 = time.time()
+            _, self.frame = self.cap.read()
+            t2 = time.time()
+            self.duration['cap'] = t2 - t1
+            #time.sleep(0.01)
     def predict(self):
         with torch.no_grad():
             while(True):
@@ -64,15 +70,16 @@ class Inference():
 
 
                     #capture
-
                     t1 = time.time()
-                    ret, frame = self.cap.read()
+                    _, self.frame = self.cap.read()
                     t2 = time.time()
-                    self.duration['cap'] = t2-t1
+                    self.duration['cap'] = t2 - t1
+                    cv2.imshow('frame',self.frame)
+
 
                     #transform
-
-                    input_image = cv2.resize(frame, (self.feed_width, self.feed_height))
+                    t2 = time.time()
+                    input_image = cv2.resize(self.frame, (self.feed_width, self.feed_height))
                     input_image = transforms.ToTensor()(input_image).unsqueeze(0)
                     input_image = input_image.to(self.device)
                     t3 = time.time()
@@ -80,13 +87,6 @@ class Inference():
 
                     # # PREDICTION
                     torch.cuda.synchronize(self.device)
-
-
-
-                    # if self.arch =='monodepth2':
-                    #     disp = self.monodepth2(input_image)
-                    # elif self.arch =='fastdepth':
-                    #     disp = self.fastdepth(input_image)
 
                     features = self.encoder(input_image)
                     t33 = time.time()
@@ -96,19 +96,11 @@ class Inference():
                     disp = torch.nn.functional.interpolate(
                         disp, (480, 640), mode="bilinear", align_corners=False)[0, 0].to('cpu').detach().numpy()
 
-
-
-
-                    #show
-
                     torch.cuda.synchronize(self.device)
                     t4 = time.time()
 
                     self.duration['encoder'] = t33 - t3
                     self.duration['decoder'] = t4 - t33
-
-
-
                     cv2.imshow('depth',disp)
 
                     self.duration['final']=t4-t1
@@ -118,22 +110,24 @@ class Inference():
                 except KeyboardInterrupt:
 
                     return
-                except:
-                    pass
+                #except:
+                #    pass
     def run(self):
+        #t0 = threading.Thread(target=self.capture)
+
         t1 = threading.Thread(target=self.predict)
-        #t3 = threading.Thread(target=self.predict)
 
         t2 = threading.Thread(target=self.get_fps)
         t1.start()
         t2.start()
+        #t0.start()
         #t3.start()
     def get_fps(self,line=7):
         while True:
             cnt=line
             for k,v in self.duration.items():
 
-                self.writer.write("{}: {:.2f}".format(k, 1 /v),location=(0,cnt))
+                self.writer.write("{}: {:.2f}ms fps={:.2f} ".format(k, 1000*v, 1/v),location=(0,cnt))
                 cnt+=1
 
             time.sleep(2.1)
@@ -141,8 +135,8 @@ class Inference():
     def monodepth2_init(self,running_on):
 
         if running_on == 'pc':
-            self.encoder_path = "/home/roit/models/monodepth2_official/mono_640x192/encoder.pth"
-            self.depth_decoder_path = "/home/roit/models/monodepth2_official/mono_640x192/depth.pth"
+            self.encoder_path = "/home/roit/bluep2/models/monodepth2/MC/ours_06020659/models/weights_19/encoder.pth"
+            self.depth_decoder_path = "/home/roit/bluep2/models/monodepth2/MC/ours_06020659/models/weights_19/depth.pth"
         elif running_on == 'Xavier':
             self.encoder_path = "/home/wang/970evop1/models/mono_640x192/encoder.pth"
             self.depth_decoder_path = "/home/wang/970evop1/models/mono_640x192/depth.pth"
@@ -188,7 +182,7 @@ class Inference():
             print('==>error')
         self.model = model['model']
         self.feed_height = 224
-        self.feed_width = 224
+        self.feed_width = 384
         pass
 
     def fastdepth(self,input_image):
