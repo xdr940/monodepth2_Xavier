@@ -1,4 +1,5 @@
 #from __future__ import absolute_import, division, print_function
+from opts import OPTIONS
 
 from utils.logger import Writer
 from torchvision import transforms
@@ -13,57 +14,53 @@ cudnn.benchmark = True
 import cv2
 import time
 class Inference():
-    def __init__(self,dev='cuda',running_on='pc',arch='monodepth2'):
-        print('==> runing on ', running_on)
-        self.device = torch.device(dev)
+    def __init__(self,args):
+        self.running_on = args.running_on
+        self.arch = args.arch
+
+        print('==> runing on ', self.running_on)
+        self.device = torch.device(args.device)
         print("==> device:", self.device)
-
-        print('==> running on ',running_on)
-
-        print('==> arch',arch)
-        self.arch=arch
+        print('==> arch',self.arch)
         #models path
-        if arch=='monodepth2':
-            self.monodepth2_init(running_on=running_on)
-        elif arch =='fastdepth':
-            if running_on == 'pc':
+
+        if self.arch=='monodepth2':
+            self.monodepth2_init(args)
+        elif self.arch =='fastdepth':
+            if self.running_on == 'pc':
                 self.model_path = "/home/roit/models/fast-depth/mobilenet-nnconv5.pth.tar"
-            elif running_on=='Xavier':
+            elif self.running_on=='Xavier':
                 self.model_path = "/home/wang/models/fast-depth/mobilenet-nnconv5.pth.tar"
 
 
         ##init
 
-        if arch=='monodepth2':
-            self.monodepth2_init(running_on=running_on)
-        elif arch=='fastdepth':
-            self.fastdepth_init(running_on=running_on)
+        if self.arch=='monodepth2':
+            self.monodepth2_init(args)
+        elif self.arch=='fastdepth':
+            pass
+            #self.fastdepth_init(running_on=self.running_on)
 
 
 
         ##camera
         try:
             self.cap = cv2.VideoCapture()
-            if running_on=='pc':
-                self.cap.open("/dev/video0")
-            elif running_on=='Xavier':
-                self.cap.open("/dev/mycamera")
+            self.cap.open(args.camera_name)
         except:
             print("==> camera open failed")
             return
+
+        self.capture_width = args.capture_width
+        self.capture_height = args.capture_height
+
 
 
         self.writer = Writer()
         self.duration={'cap':1,'transform':2,'encoder':3,'decoder':4,'final':5}
         _,self.frame = self.cap.read()
-    def capture(self):
-        while True:
-            t1 = time.time()
-            _, self.frame = self.cap.read()
-            t2 = time.time()
-            self.duration['cap'] = t2 - t1
-            #time.sleep(0.01)
-    def predict(self):
+
+    def prediction(self):
         with torch.no_grad():
             while(True):
                 try:
@@ -74,6 +71,7 @@ class Inference():
                     _, self.frame = self.cap.read()
                     t2 = time.time()
                     self.duration['cap'] = t2 - t1
+
                     cv2.imshow('frame',self.frame)
 
 
@@ -110,12 +108,11 @@ class Inference():
                 except KeyboardInterrupt:
 
                     return
-                #except:
-                #    pass
+
     def run(self):
         #t0 = threading.Thread(target=self.capture)
 
-        t1 = threading.Thread(target=self.predict)
+        t1 = threading.Thread(target=self.prediction)
 
         t2 = threading.Thread(target=self.get_fps)
         t1.start()
@@ -132,14 +129,9 @@ class Inference():
 
             time.sleep(2.1)
 
-    def monodepth2_init(self,running_on):
-
-        if running_on == 'pc':
-            self.encoder_path = "/home/roit/bluep2/models/monodepth2/MC/ours_06020659/models/weights_19/encoder.pth"
-            self.depth_decoder_path = "/home/roit/bluep2/models/monodepth2/MC/ours_06020659/models/weights_19/depth.pth"
-        elif running_on == 'Xavier':
-            self.encoder_path = "/home/wang/970evop1/models/mono_640x192/encoder.pth"
-            self.depth_decoder_path = "/home/wang/970evop1/models/mono_640x192/depth.pth"
+    def monodepth2_init(self,args):
+        self.encoder_path = args.encoder_path
+        self.depth_decoder_path = args.depth_decoder_path
 
 
         # encoder init
@@ -164,36 +156,44 @@ class Inference():
         self.depth_decoder.eval()
 
         ## inputs size
-        self.feed_height = self.loaded_dict_enc['height']
-        self.feed_width = self.loaded_dict_enc['width']
+
+        if args.feed_height and args.feed_width:
+            self.feed_height =  args.feed_height
+            self.feed_width = args.feed_width
+        else:
+            self.feed_height = self.loaded_dict_enc['height']
+            self.feed_width = self.loaded_dict_enc['width']
+
+
+
     def monodepth2(self,input_image):
         features = self.encoder(input_image)
         disp = self.depth_decoder(features[0], features[1], features[2], features[3], features[4])
         disp = torch.nn.functional.interpolate(
-            disp, (480, 640), mode="bilinear", align_corners=False)[0, 0].to('cpu').detach().numpy()
+            disp, (self.capture_height, self.capture_width), mode="bilinear", align_corners=False)[0, 0].to('cpu').detach().numpy()
         return disp
 
-    def fastdepth_init(self,running_on):
-        if running_on=='pc':
-            model = torch.load('/home/roit/models/fast-depth/mobilenet-nnconv5.pth.tar')
-        elif running_on=='Xavier':
-            model = torch.load('/home/wang/models/fast-depth/mobilenet-nnconv5.pth.tar')
-        else:
-            print('==>error')
-        self.model = model['model']
-        self.feed_height = 224
-        self.feed_width = 384
-        pass
-
-    def fastdepth(self,input_image):
-        disp = self.model(input_image)
-        disp = torch.nn.functional.interpolate(
-            disp, (480, 640), mode="bilinear", align_corners=False)[0, 0].to('cpu').detach().numpy()
-        return  1/disp
-
+    # def fastdepth_init(self,running_on):
+    #     if running_on=='pc':
+    #         model = torch.load('/home/roit/models/fast-depth/mobilenet-nnconv5.pth.tar')
+    #     elif running_on=='Xavier':
+    #         model = torch.load('/home/wang/models/fast-depth/mobilenet-nnconv5.pth.tar')
+    #     else:
+    #         print('==>error')
+    #     self.model = model['model']
+    #     self.feed_height = 224
+    #     self.feed_width = 384
+    #     pass
+    # def fastdepth(self,input_image):
+    #     disp = self.model(input_image)
+    #     disp = torch.nn.functional.interpolate(
+    #         disp, (480, 640), mode="bilinear", align_corners=False)[0, 0].to('cpu').detach().numpy()
+    #     return  1/disp
+    #
 
 if __name__ == "__main__":
-    inf = Inference('cuda',running_on='pc',arch='monodepth2')
+    args = OPTIONS().args()
+    inf = Inference(args)
     inf.run()
   #  inf2 =Inference('cpu')
   #  inf2.run()
