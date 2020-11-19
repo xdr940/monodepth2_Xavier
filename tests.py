@@ -1,20 +1,9 @@
-class Base():
-    def __init__(self,running_on,dev):
-        super(Base, self).__init__()
-        self.running_on = running_on
-        self.dev= dev
-    def get_fps(self):
-        pass
-        #print('base fps')
+from path import Path
 
 
-class Up(Base):
-    def __init__(self, *args, **kwargs):
-        super(Up, self).__init__(*args, **kwargs)
-        print(self.dev,self.running_on)
+p = Path('/home/roit/Desktop/fpose2.txt')
 
-    def get_fps(self):
-        print('up fps')
+print('ok')
 
 
-up = Up(dev='cuda',running_on='pc')
+

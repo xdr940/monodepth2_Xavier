@@ -8,16 +8,20 @@ import time
 cap.open("/dev/video0" )
 writer = Writer()
 duration=1
+solution=0
 
+cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT,320)
 
 
 def cam():
-    global duration
+    global duration,solution
     while (1):
         try:
             t1 = time.time()
 
             ret, frame = cap.read()
+            solution = frame.shape
 
             t2 = time.time()
 
@@ -29,14 +33,15 @@ def cam():
         except KeyboardInterrupt:
             return
         except:
+
             pass
 
 
 
 def temout():
-    global duration
+    global duration,solution
     while True:
-        writer.write("fps: {:.2f}".format( 1/duration))
+        writer.write("fps: {:.2f}, solution {}".format( 1/duration,solution))
         time.sleep(1)
 if __name__ == '__main__':
     t1 = threading.Thread(target=cam)

@@ -1,4 +1,5 @@
 import argparse
+
 class OPTIONS:
     def __init__(self):
         self.parser = argparse.ArgumentParser(description="Monodepthv2 training options")
@@ -20,6 +21,9 @@ class OPTIONS:
         )
         self.parser.add_argument("--camera_name",default="/dev/video0")
 
+        self.parser.add_argument("--cap_width",default=640)
+        self.parser.add_argument("--cap_height",default=480)
+
 
         self.parser.add_argument("--feed_width",default=384)
         self.parser.add_argument("--feed_height",default=224)
@@ -27,6 +31,16 @@ class OPTIONS:
         self.parser.add_argument("--show_frame",default=True) #show input frames
         self.parser.add_argument("--capture_width",default=640)
         self.parser.add_argument("--capture_height",default=480)
+
+
+        self.parser.add_argument("--colormap_depth",default='bone',choices=['bone','plasma','jet'])
+
+
+        self.parser.add_argument("--pose_arch",default=None,choices=['posecnn','EnDePose',None])
+        self.parser.add_argument("--posecnn_path",default="/home/roit/models/SCBian_official/cs+k_pose.tar")
+
+        self.parser.add_argument("--pose_decoder_path",default="/home/roit/models/monodepth2/mc_06020659/pose.pth")
+
 
 
 
